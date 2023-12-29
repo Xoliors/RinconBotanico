@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Registro</title>
+
+  <!-- CSS
+  ================================================== -->
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="styles/plugins/themefisher-font/style.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="styles/plugins/bootstrap/bootstrap.min.css">
+  <!-- Lightbox.min css -->
+  <link rel="stylesheet" href="styles/plugins/lightbox2/css/lightbox.min.css">
+  <!-- animation css -->
+  <link rel="stylesheet" href="styles/plugins/animate/animate.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="styles/plugins/slick/slick.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles/css/style.css">
+
+</head>
+<body id="body">
+
+<header class="navigation fixed-top">
+  <div class="container">
+    <!-- main nav -->
+    <nav class="navbar navbar-expand-lg navbar-light px-0">
+		<!-- logo -->
+		<a class="navbar-brand logo" href="/principal">
+			<img loading="lazy" class="logo-default" src="styles/images/logorb2.png" alt="logo" style="height: 50px;"/>
+			<img loading="lazy" class="logo-white" src="styles/images/logorb2.png" alt="logo" style="height: 50px;"/>
+		</a>
+		<!-- /logo -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+			aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navigation">
+			<ul class="navbar-nav ml-auto text-center"> 
+				<li class="nav-item">
+					<a class="nav-link" href="/principal">Principal</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about">About Us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/service">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/contacto">Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/inicio_sesion">Iniciar Sesión</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/registro">Registrarse</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+    <!-- /main nav -->
+  </div>
+</header>
+<!--
+End Fixed Navigation
+==================================== -->
+
+<div class="hero-slider">
+	<div class="slider-item th-fullpage hero-area" style="background-image: url(styles/images/slider/slider-bg-1.jpg);">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<form style="max-width: 60rem; margin: 0 auto; background-color: transparent;" method="post" id="form-registrar">
+                        <div class="card" style="background-color: rgba(255, 255, 255, 0.8);">
+                            <div class="card-header"
+                                style="background-color: transparent; color: white; border-bottom:solid 5px #044415;">
+                                <h4 style="color: rgb(0, 0, 0); font-weight: bold;">Datos del Usuario</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label for="user">Nombre de usuario</label>
+                                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el usuario">
+                                    </div>
+                                    <!-- Campo de rol oculto con valor por defecto -->
+                                    <div class="form-group col-lg-6">
+                                        <label for="user">Correo Electrónico</label>
+                                        <input type="text" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo electrónico">
+                                    </div>
+                                    <input type="hidden" id="rol" name="rol" value="viewer">
+                                    <div class="form-group col-lg-6">
+                                        <label for="pass">Contraseña</label>
+                                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingrese la contraseña">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-footer"
+                                style="border-top: transparent; background-color: transparent; border-top:solid 5px #044415;">
+                                <button type="submit" class="btn" style="background-color: #c29e03; color: white; width: 100%;">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                                 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="bg-one">
+  <div class="footer-bottom">
+    <h5>&copy; Copyright 2023. All rights reserved.</h5>
+    <h6>diseñado y desarrollado por<a href="/principal">Rincón Botánico</a></h6>
+  </div>
+</footer> <!-- end footer -->
+
+
+<!-- Custom js -->
+<script src="js/jquery.js"></script>
+<script src="js/plugins.min.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="js/functions.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        /* Registrar */
+        $("#form-registrar").submit(function (e) {
+            e.preventDefault();
+            data = {
+                'nombre': $("#nombre").val(),
+                'usuario': $("#usuario").val(),
+                'rol': $("#rol").val(),
+                'correo': $("#correo").val(),
+                'pass': $("#pass").val()
+            }
+            let decide = confirm("¿Esta seguro de que desea Registrar?")
+            if (decide) {
+                $.post('/registro', data, function (rs, res) {
+                    if (rs.status) {
+                        alert("Datos Registrados Correctamente!");
+                        location.reload();
+                    }
+                    else alert("Ocurrio un error al Registrar los datos!");
+                });
+            }
+        });
+        /* Registrar */
+    });
+</script>
+
+</body>
+
+</html>

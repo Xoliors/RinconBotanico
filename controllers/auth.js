@@ -2,18 +2,20 @@ const { response } = require('express');
 const conn = require('../controllers/db');
 /* Usuarios*/
 exports.Usuarios = async(req, res) => {
-    const [usuarios] = await conn.query("select id,nombre,username,rol,password from usuarios")
+    const [usuarios] = await conn.query("select id_usuario,nombre,usuario,tipo,correo,contraseña from usuarios")
     const data = []
 
     if(usuarios.length > 0) {
         for( const i in usuarios ) {
             data.push([
+                usuarios[i]['id_usuario'],
                 usuarios[i]['nombre'],
-                usuarios[i]['username'],
-                usuarios[i]['rol'],
-                Buffer.from(usuarios[i]['password'],'base64').toString('utf-8'),
-                `<a  class="button button-3d button-mini button-rounded modal-id-act-u" data-bs-toggle="modal" data-bs-target="#usuarioEditar" style="background-color: #EF7C10;" idux="${usuarios[i]['id']}" actax="${usuarios[i]['nombre']}" idusx="${usuarios[i]['username']}" llux="${usuarios[i]['rol']}" coux="${Buffer.from(usuarios[i]['password'],'base64').toString('utf-8')}" >Editar</a>
-                <a  class="button button-3d button-mini button-rounded delete" data-idx="${usuarios[i]['id']}" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Borrar</a>`
+                usuarios[i]['usuario'],
+                usuarios[i]['correo'],
+                usuarios[i]['contraseña'],
+                Buffer.from(usuarios[i]['contraseña'],'base64').toString('utf-8'),
+                `<a  class="button button-3d button-mini button-rounded modal-id-act-u" data-bs-toggle="modal" data-bs-target="#usuarioEditar" style="background-color: #206b34;" idux="${usuarios[i]['id_usuario']}" actax="${usuarios[i]['nombre']}" idusx="${usuarios[i]['usuario']}" llux="${usuarios[i]['tipo']}" coux="${Buffer.from(usuarios[i]['contraseña'],'base64').toString('utf-8')}" >Editar</a>
+                <a  class="button button-3d button-mini button-rounded delete" data-idx="${usuarios[i]['id_usuario']}" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Borrar</a>`
             ])
         }
     }

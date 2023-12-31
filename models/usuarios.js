@@ -16,7 +16,8 @@ exports.LoginUsuarios = async (req,res) => {
     } else {
         req.session.usuario = row[0].usuario
         req.session.nombre = row[0].nombre
-        req.session.rol = row[0].rol
+        req.session.rol = row[0].tipo
+        console.log(req.session.rol)
         res.redirect('/home')
     }
 }
@@ -29,7 +30,7 @@ exports.LogOutUsuarios = (req, res) => {
         } else {
             res.clearCookie(req.session); // eliminar la cookie de sesión
             //console.log('session',req.session)
-            res.redirect('/principal');
+            res.redirect('/');
             // redirigir al usuario a la página de inicio de sesión
         }
     });

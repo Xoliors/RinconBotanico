@@ -25,7 +25,7 @@ router.get('/inicio_sesion', (req,res)=>{
     res.render('pages/');
 });
 
-router.get('/principal', (req,res)=>{
+router.get('/', (req,res)=>{
     res.render('pages/principal');
 });
 

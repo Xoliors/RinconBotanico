@@ -11,8 +11,8 @@ exports.Usuarios = async(req, res) => {
                 usuarios[i]['id_usuario'],
                 usuarios[i]['nombre'],
                 usuarios[i]['usuario'],
+                usuarios[i]['tipo'],
                 usuarios[i]['correo'],
-                usuarios[i]['contraseña'],
                 Buffer.from(usuarios[i]['contraseña'],'base64').toString('utf-8'),
                 `<a  class="button button-3d button-mini button-rounded modal-id-act-u" data-bs-toggle="modal" data-bs-target="#usuarioEditar" style="background-color: #206b34;" idux="${usuarios[i]['id_usuario']}" actax="${usuarios[i]['nombre']}" idusx="${usuarios[i]['usuario']}" llux="${usuarios[i]['tipo']}" coux="${Buffer.from(usuarios[i]['contraseña'],'base64').toString('utf-8')}" >Editar</a>
                 <a  class="button button-3d button-mini button-rounded delete" data-idx="${usuarios[i]['id_usuario']}" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Borrar</a>`

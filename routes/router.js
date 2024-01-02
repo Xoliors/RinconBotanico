@@ -29,11 +29,6 @@ router.get('/', (req,res)=>{
     res.render('pages/principal');
 });
 
-//redirige a la base maestra
-router.get('/baseMaestra', (req,res)=>{
-    res.render('pages/baseMaestra')
-})
-
 router.get('/home', (req,res)=>{
     if(req.session.rol=='admin'){
         res.render('pages/homeAdmin')
@@ -42,9 +37,9 @@ router.get('/home', (req,res)=>{
     }
 })
 
-router.get('/baseMaestra2', (req,res)=>{
+router.get('/catalogo', (req,res)=>{
     //console.log(req.session)
-    res.render('pages/baseMaestra2')
+    res.render('pages/catalogo')
 })
 router.get('/creacion',(req,res) => {
     res.render('pages/creacionUsuarios')

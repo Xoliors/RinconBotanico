@@ -6553,15 +6553,6 @@ body:not(.has-plugin-html5video) .video-wrap video {
 	transform: translateY(0);
 }
 
-/* Page Title - Background Pattern
------------------------------------------------------------------*/
-
-.page-title-pattern {
-	background-image: url('images/pattern.png');
-	background-repeat: repeat;
-	background-attachment: fixed;
-}
-
 /* Page Title - Parallax Background
 -----------------------------------------------------------------*/
 
@@ -16946,4 +16937,16 @@ background-color: #c3ea21 !important;
 	height: 100%;
 	z-index:10;
 	background-size: cover;
+}
+
+#cata {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between; /* Opcional: Distribuir el espacio entre los elementos */
+}
+
+.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

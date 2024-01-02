@@ -86,6 +86,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6">
+                                                    <label for="user">Correo Electrónico</label>
+                                                    <input type="text" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo electrónico">
+                                                </div>
+                                                <div class="form-group col-lg-6">
                                                     <label for="pass">Contraseña</label>
                                                     <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingrese la contraseña">
                                                 </div>
@@ -166,6 +170,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6">
+                                                    <label for="user">Correo Electrónico</label>
+                                                    <input type="text" class="form-control" id="correoE" name="correoE" placeholder="Ingrese el correo electrónico">
+                                                </div>
+                                                <div class="form-group col-lg-6">
                                                     <label for="passE">Contraseña</label>
                                                     <input type="text" class="form-control" id="passE" name="passE" placeholder="Ingrese la contraseña">
                                                 </div>
@@ -231,6 +239,9 @@
             $("#rolE").val($(this).attr('llux'));
         });
         $(document).on('click', '.modal-id-act-u', function (e) {
+            $("#correoE").val($(this).attr('correoux'));
+        });
+        $(document).on('click', '.modal-id-act-u', function (e) {
             $("#passE").val($(this).attr('coux'));
         });
         /* Traer Campos y se muestre en el modal */
@@ -241,6 +252,7 @@
                 'nombre': $("#nombre").val(),
                 'usuario': $("#usuario").val(),
                 'rol': $("#rol").val(),
+                'correo': $("#correo").val(),
                 'pass': $("#pass").val()
             }
             let decide = confirm("¿Esta seguro de que desea Registrar?")
@@ -259,10 +271,11 @@
         $("#form-actualizar").submit(function (e) {
             e.preventDefault();
             data = {
-                'id':$("#idux").val(),
+                'idux':$("#idux").val(),
                 'nombre': $("#nombreE").val(),
                 'usuario': $("#usuarioE").val(),
                 'rol': $("#rolE").val(),
+                'correo': $("#correoE").val(),
                 'pass': $("#passE").val()
             }
             console.log(data)

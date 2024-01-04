@@ -20,7 +20,7 @@ router.use(session({
     }
 }));
 
-//redirige a la pogina principal
+//redirige a la página de inicio de sesión
 router.get('/inicio_sesion', (req,res)=>{
     res.render('pages/');
 });
@@ -37,10 +37,21 @@ router.get('/home', (req,res)=>{
     }
 })
 
+//Páginas para los usuarios sin registro
+router.get('/CatalogoPrincipal', (req,res)=>{
+    res.render('pages/cataP')
+})
+
+router.get('/Servicios', (req,res)=>{
+    res.render('pages/servicios')
+})
+
+//Paginas del usuario con registro y para registrarse
 router.get('/catalogo', (req,res)=>{
     //console.log(req.session)
     res.render('pages/catalogo')
 })
+
 router.get('/creacion',(req,res) => {
     res.render('pages/creacionUsuarios')
 })

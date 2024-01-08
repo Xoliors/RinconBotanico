@@ -110,10 +110,22 @@ router.get('/logout',usuarios.LogOutUsuarios)
 router.get('/validar', usuarios.validarSesion)
 router.use('/Perfil', usuarios.validarSesion)
 router.get('/data', usuarios.data)
+router.get('/conteo', usuarios.conteo)
+router.get('/conteos', usuarios.conteo2)
 
 router.get('/tableUsuarios',manejo.Usuarios);
 router.post('/registrarU', manejo.RegistrarU);
 router.post('/actualizarU', manejo.ActualizarU);
 router.post('/eliminarU', manejo.EliminarU);
+
+router.get('/imagenes-cv', async (req, res) => {
+    try {
+        const primeras10 = await controlador.obtenerPrimeras10Imagenes(); // Función para obtener las primeras 10 imágenes
+        res.status(200).json(primeras10);
+    } catch (error) {
+        console.error("Error al obtener las primeras 10 imágenes:", error);
+        res.status(500).json({ error: "Error al obtener las primeras 10 imágenes" });
+    }
+});
 
 module.exports = router;

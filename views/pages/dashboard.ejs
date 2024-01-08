@@ -154,37 +154,61 @@ $(document).ready(function () {
     });
 });
 
-    // Datos para el primer gráfico
-    var data1 = {
-        labels: ["Completadas", "Sin Completar"],
-        datasets: [{
-        data: [30, 20],
-        backgroundColor: ["#36A2EB", "#FFCE56"]
-        }]
-    };
+fetch('/conteo')
+    .then(response => response.json())
+    .then(data => {
+        // Datos para el primer gráfico (asumiendo que 'data' contiene los conteos)
+        var data1 = {
+            labels: data.map(item => item.label),
+            datasets: [{
+                data: data.map(item => item.count),
+                backgroundColor: [
+                    '#36A2EB', '#FFCE56', // Puedes agregar más colores si hay más estados
+                    // Agrega más colores aquí si es necesario
+                ]
+            }]
+        };
 
-    // Datos para el segundo gráfico
-    var data2 = {
-        labels: ["Vencidas", "Sin Fecha limite"],
-        datasets: [{
-        data: [15, 5],
-        backgroundColor: ["#36A2EB", "#FFCE56"]
-        }]
-    };
+        // Obtener el contexto del primer gráfico
+        var ctx1 = document.getElementById('chart1').getContext('2d');
 
-    // Obtener el contexto de los gráficos
-    var ctx1 = document.getElementById('chart1').getContext('2d');
-    var ctx2 = document.getElementById('chart2').getContext('2d');
-
-    // Crear los gráficos de pastel
-    var myPieChart1 = new Chart(ctx1, {
-        type: 'pie',
-        data: data1
+        // Actualizar el primer gráfico con los nuevos datos
+        var myPieChart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: data1
+        });
+    })
+    .catch(error => {
+        console.error("Error al obtener datos para el gráfico:", error);
     });
 
-    var myPieChart2 = new Chart(ctx2, {
-        type: 'pie',
-        data: data2
+    fetch('/conteos')
+    .then(response => response.json())
+    .then(data => {
+        // Datos para el primer gráfico (asumiendo que 'data' contiene los conteos)
+        var data1 = {
+            labels: data.map(item => item.label),
+            datasets: [{
+                data: data.map(item => item.count),
+                backgroundColor: [
+                    '#36A2EB', '#FFCE56', // Puedes agregar más colores si hay más estados
+                    // Agrega más colores aquí si es necesario
+                ]
+            }]
+        };
+
+        // Obtener el contexto del primer gráfico
+        var ctx1 = document.getElementById('chart2').getContext('2d');
+
+        // Actualizar el primer gráfico con los nuevos datos
+        var myPieChart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: data1
+        });
+    })
+    .catch(error => {
+        console.error("Error al obtener datos para el gráfico:", error);
     });
+
     </script>
 </html>

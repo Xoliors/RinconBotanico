@@ -46,49 +46,61 @@
 
 		<section class="cv">
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/1.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/2.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/3.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/4.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/5.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/6.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/7.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
 			</div>
 			<div class="container">
-				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<img src="img/plantas/8.jpg" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/plantas/9.jpg" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/plantas/10.jpg" alt="Avatar" class="image">
 				<div class="middle">
 				  <div class="text">John Doe</div>
 				</div>
@@ -126,7 +138,41 @@
 	<script src="js/functions.js"></script>
 
 	<script>
-		$('.selectsplitter').selectsplitter();
+		window.onload = function() {
+			fetch('/primeras10imagenes')
+				.then(response => response.json())
+				.then(imagenes => {
+					const imagenesContainer = document.getElementById('imagenesContainer');
+	
+					// Recorrer las imágenes y crear elementos <div> con <img> dentro para mostrarlas
+					imagenes.slice(0, 10).forEach(imagenURL => {
+						const containerDiv = document.createElement('div');
+						containerDiv.classList.add('container');
+	
+						const imagen = document.createElement('img');
+						imagen.src = imagenURL;
+						imagen.alt = 'Imagen';
+						imagen.classList.add('image');
+	
+						const middleDiv = document.createElement('div');
+						middleDiv.classList.add('middle');
+	
+						const textDiv = document.createElement('div');
+						textDiv.classList.add('text');
+						textDiv.textContent = 'Descripción de la imagen'; // Puedes agregar una descripción si lo necesitas
+	
+						middleDiv.appendChild(textDiv);
+						containerDiv.appendChild(imagen);
+						containerDiv.appendChild(middleDiv);
+	
+						imagenesContainer.appendChild(containerDiv);
+					});
+				})
+				.catch(error => {
+					console.error("Error al obtener las imágenes:", error);
+					// Manejo de errores
+				});
+		};
 	</script>
 </body>
 </html>

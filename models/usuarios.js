@@ -19,7 +19,6 @@ exports.LoginUsuarios = async (req,res) => {
         req.session.rol = row[0].tipo
         req.session.correo = row[0].correo;
         req.session.pass = Buffer.from(row[0]['contraseña'],'base64').toString('utf-8')
-        console.log(req.session.pass)
         res.redirect('/home')
     }
 }
@@ -40,7 +39,6 @@ exports.LogOutUsuarios = (req, res) => {
 
 exports.validarSesion = async (req, res) => {
     res.send(req.session);
-    console.log(req.session)
 };
 
 exports.data = async (req, res) => {
@@ -66,6 +64,48 @@ exports.data = async (req, res) => {
     } catch (error) {
         console.error("Error al obtener datos de actividades:", error);
         res.status(500).json({ error: "Error al obtener datos de actividades" });
+    }
+};
+
+exports.conteo = async (req, res) => {
+    const sessionData = req.session;
+    const id = sessionData.idux;
+
+    try {
+        const [completedCount] = await conn.query("SELECT COUNT(id_actividad) as conteo FROM actividades WHERE id_usuario = ? AND estatus = 'completada'", [id]);
+        const [pendingCount] = await conn.query("SELECT COUNT(id_actividad) as conteo FROM actividades WHERE id_usuario = ? AND estatus = 'sin completar'", [id]);
+
+        const dataFormatted = [
+            { label: 'Completadas', count: completedCount[0].conteo || 0 },
+            { label: 'Sin Completar', count: pendingCount[0].conteo || 0 }
+            // Agrega más objetos para otros estados
+        ];
+
+        res.json(dataFormatted);
+    } catch (error) {
+        console.error("Error al obtener conteos de actividades:", error);
+        res.status(500).json({ error: "Error al obtener conteos de actividades" });
+    }
+};
+
+exports.conteo2 = async (req, res) => {
+    const sessionData = req.session;
+    const id = sessionData.idux;
+
+    try {
+        const [completedCount] = await conn.query("SELECT COUNT(id_actividad) as conteo FROM actividades WHERE id_usuario = ? AND estatus = 'vencida'", [id]);
+        const [pendingCount] = await conn.query("SELECT COUNT(id_actividad) as conteo FROM actividades WHERE id_usuario = ? AND estatus = 'sin fecha'", [id]);
+
+        const dataFormatted = [
+            { label: 'Completadas', count: completedCount[0].conteo || 0 },
+            { label: 'Sin Completar', count: pendingCount[0].conteo || 0 }
+            // Agrega más objetos para otros estados
+        ];
+
+        res.json(dataFormatted);
+    } catch (error) {
+        console.error("Error al obtener conteos de actividades:", error);
+        res.status(500).json({ error: "Error al obtener conteos de actividades" });
     }
 };
 

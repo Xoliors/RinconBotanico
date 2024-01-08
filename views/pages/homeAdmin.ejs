@@ -11,7 +11,6 @@
 			fetch('/validar')
 			.then(result => result.json())
 			.then(rs => {
-				console.log(rs)
 				var usuario = rs.usuario
 				if(!usuario){
 					window.location=`/`

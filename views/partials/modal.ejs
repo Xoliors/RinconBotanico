@@ -1,0 +1,75 @@
+<!-- Modal -->
+<div class="modal fade" id="datosbasicos" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+	<form style="max-width: 35rem;" method="post" id="form-actualizar">
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background: #206b34; color: white; border-bottom:solid 5px #c3ea21;">
+				<h4 class="modal-title" id="myModalLabel"
+					style="color: white; font-weight: bold;">Editar Usuario</h4>
+				<button type="button" class="btn-close btn-light" data-bs-dismiss="modal"
+					aria-hidden="true"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="form-group col-lg-6">
+						<label for="nombreE">Nombre</label>
+						<input type="text" class="form-control" id="nombreE" name="nombreE" placeholder="Ingrese el nombre" value="<%= usuarioSesion.nombre %>">
+					</div>
+					<div class="form-group col-lg-6">
+						<label for="usuarioE">Nombre de usuario</label>
+						<input type="text" class="form-control" id="usuarioE" name="usuarioE" placeholder="Ingrese el usuario" value="<%= usuarioSesion.usuario %>">
+					</div>
+					<div class="form-group col-lg-6">
+						<label for="user">Correo Electrónico</label>
+						<input type="text" class="form-control" id="correoE" name="correoE" placeholder="Ingrese el correo electrónico" value="<%= usuarioSesion.correo %>">
+					</div>
+					<div class="form-group col-lg-6">
+						<label for="passE">Contraseña</label>
+						<input type="text" class="form-control" id="passE" name="passE" placeholder="Ingrese la contraseña" value="<%= usuarioSesion.pass %>">
+					</div>
+					<input type="hidden" value="<%= usuarioSesion.idux %>" name="idux" id="idux">
+					<input type="hidden" value="<%= usuarioSesion.rol %>" name="rolE" id="rolE">
+				</div>
+			</div>
+			<div class="modal-footer form-group"
+				style="border-top: transparent; background-color: #206b34; margin-bottom: 0%;  border-top:solid 5px #c3ea21;">
+				<button type="button" class="btn" data-bs-dismiss="modal"
+					style="background-color: rgba(255, 0, 0, 0.514); color: white;">Cerrar</button>
+				<input type="submit" class="btn"
+					style="background-color: #c3ea21; color: white;" value="Guardar" />
+			</div>
+		</div>
+	</form>
+</div>
+<div>
+</div>
+</div>
+<!--End Modal -->
+
+<!-- Modal 2-->
+<div class="modal fade" id="datosi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+	<form style="max-width: 35rem;" method="post" id="form-i">
+		<div class="modal-content">
+			<div class="modal-header"
+				style="background: #206b34; color: white; border-bottom:solid 5px #c3ea21;">
+				<h4 class="modal-title" id="myModalLabel"
+					style="color: white; font-weight: bold;">Editar Datos de Interes</h4>
+				<button type="button" class="btn-close btn-light" data-bs-dismiss="modal"
+					aria-hidden="true"></button>
+			</div>
+			<h1 style="text-align: center;">PROXIMAMENTE</h1>
+			<div class="modal-footer form-group"
+				style="border-top: transparent; background-color: #206b34; margin-bottom: 0%;  border-top:solid 5px #c3ea21;">
+				<button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Cerrar</button>
+				<!-- <input type="submit" class="btn" style="background-color: #c3ea21; color: white;" value="Guardar" /> -->
+			</div>
+		</div>
+	</form>
+</div>
+<div>
+</div>
+</div>
+<!--End Modal 2 -->

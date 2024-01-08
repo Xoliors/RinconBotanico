@@ -1,0 +1,46 @@
+.cv {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 250px;
+}
+
+.container {
+  flex: 0 0 20%; /* Para que cada contenedor ocupe el 20% del ancho */
+  position: relative;
+  margin: 5px; /* Espacio entre los contenedores */
+  box-sizing: border-box; /* Incluir el padding y border en el ancho del elemento */
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  height: 200px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}

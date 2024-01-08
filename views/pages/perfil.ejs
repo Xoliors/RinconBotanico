@@ -4,7 +4,7 @@
     <%- include('../partials/head'); %>
 	<!-- Document Title
 	============================================= -->
-	<title>CATALOGO</title>
+	<title>Perfil</title>
 	<script>
 		window.onpageshow = function(){
 			fetch('/validar')
@@ -38,7 +38,7 @@
 		============================================= -->
 		<section id="page-title" class="page-title-pattern">
 			<div class="container clearfix">
-				<h1 class="azul"><i class="icon-book1"></i> Catalogo de Plantas</h2><br>
+				<h1 class="azul"><i class="icon-database"></i> Catalogo de Plantas</h2><br>
 			</div>
 		</section><!-- #page-title end -->
 
@@ -48,12 +48,11 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<div>
-								<h4 class="mb-0">Plantas según su ciclo de vida</h4>
-								<img src="img/plantas-v.jpg" alt="Descripción de la imagen" class="card-img-top">
+								<h4 class="mb-0">Datos Básicos</h4>
 							</div>
 						</div>
 						<div>
-							<a href="/Plantas_segun_su_ciclo_de_vida"><button class="btn btn-primary">Ver</button></a>
+							<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosbasicos" style="background-color: #206b34; "> Editar</button>
 						</div>
 					</div>
 				</div>
@@ -63,12 +62,11 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<div>
-								<h4 class="mb-0">Plantas según su habitát</h4>
-								<img src="img/plantas-i.jpg" alt="Descripción de la imagen" class="card-img-top" style="height: 221px;width: 350px;">
+								<h4 class="mb-0">Datos de Interes</h4>
 							</div>
 						</div>
 						<div>
-							<a href="/Plantas_segun_su_habitad"><button class="btn btn-primary">Ver</button></a>
+							<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosi" style="background-color: #206b34; "> Editar</button>
 						</div>
 					</div>
 				</div>
@@ -78,8 +76,7 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<div>
-								<h4 class="mb-0">Plantas según su utilidad</h4>
-								<img src="img/plantas-u.jpg" alt="Descripción de la imagen" class="card-img-top" style="height: 221px;width: 350px;">
+								<h4 class="mb-0">Actividades</h4>
 							</div>
 						</div>
 						<div>
@@ -93,8 +90,7 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<div>
-								<h4 class="mb-0">Plantas según su estructura</h4>
-								<img src="img/plantas-e.jpg" alt="Descripción de la imagen" class="card-img-top" style="height: 221px;width: 350px;">
+								<h4 class="mb-0">Plantas</h4>
 							</div>
 						</div>
 						<div>
@@ -103,28 +99,9 @@
 					</div>
 				</div>
 			</div>
-			
-		</section>
-		<section class="cata-com">
-			<div class="cont">
-				<div class="mt-4 col-xl-3 col-lg-6 col-md-12 col-12" style="padding-left: 10px;padding-right: 40px;">
-					<div class="card">
-						<div class="card-body">
-							<div class="d-flex justify-content-between align-items-center mb-3">
-								<div>
-									<h4 class="mb-0">Plantas según su reproducción</h4>
-									<img src="img/plantas-r.jpg" alt="Descripción de la imagen" class="card-img-top" style="height: 221px;width: 350px;">
-								</div>
-							</div>
-							<div>
-								<a href="/Plantas_segun_su_reproduccion"><button class="btn btn-primary">Ver</button></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</section>
 		<br><br>
+		<%- include('../partials/modal'); %>
 		<!-- Footer
 		============================================= -->
         <%- include('../partials/footer'); %>
@@ -137,26 +114,61 @@
 	<div id="gotoBottom" class="icon-angle-down"></div>
 
 
-	<!-- JavaScripts
-	============================================= -->
 	<script src="js/jquery.js"></script>
-	<script src="js/plugins.min.js"></script>
-
-	<!-- Bootstrap Data Table Plugin -->
-	<script src="js/components/bs-datatable.js"></script>
-
-	<!-- Bootstrap Select Plugin -->
-	<script src="js/components/bs-select.js"></script>
-
-	<!-- Select Splitter Plugin -->
-	<script src="js/components/selectsplitter.js"></script>
-
-	<!-- Footer Scripts
-	============================================= -->
-	<script src="js/functions.js"></script>
-
+    <script src="js/plugins.min.js"></script>
+    <!-- Bootstrap Data Table Plugin -->
+    <script src="js/components/bs-datatable.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="js/functions.js"></script>
+	
 	<script>
-		$('.selectsplitter').selectsplitter();
-	</script>
+        $(document).on('click', '.modal-id-act-u', function () {
+            var idUsuario = $(this).attr('idux');
+            // Realizar una solicitud AJAX para obtener la información del usuario por su ID
+            $.ajax({
+                url: '/validar',
+                method: 'GET',
+                success: function (usuario) {
+                    // Mostrar la información del usuario en el modal
+                    $('#nombreE').val(usuario.nombre);
+					$('#usuarioE').val(usuario.usuario);
+					$('#correoE').val(usuario.correo);
+					$('#passE').val(usuario.pass);
+					$('#idux').val(usuario.idux);
+					$('#rolE').val(usuario.rol);
+
+                    // Mostrar el modal después de actualizar los campos
+                    $('#datosbasicos').modal('show');
+                },
+                error: function (error) {
+                    console.error('Error al obtener información del usuario:', error);
+                }
+            });
+        });
+
+		$("#form-actualizar").submit(function (e) {
+            e.preventDefault();
+            data = {
+                'idux':$("#idux").val(),
+                'nombre': $("#nombreE").val(),
+                'usuario': $("#usuarioE").val(),
+                'rol': $("#rolE").val(),
+                'correo': $("#correoE").val(),
+                'pass': $("#passE").val()
+            }
+            console.log(data)
+            let decide = confirm("¿Esta seguro de que desea actualizar?")
+            if (decide) {
+                $.post('/actualizarU', data, function (rs, res) {
+                    if (rs.status) {
+                        alert("Datos Actualizados Correctamente!");
+                        location.reload();
+                    }
+                    else alert("Ocurrio un error al actualizar los datos!");
+                });
+            }
+        });
+    </script>
 </body>
 </html>

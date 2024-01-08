@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <%- include('../partials/head'); %>
+
+	<link rel="stylesheet" href="styles/css/style2.css">
+	<!-- Document Title
+	============================================= -->
+	<title>BASE MAESTRA GS1</title>
+	<script>
+		window.onpageshow = function(){
+			fetch('/validar')
+			.then(result => result.json())
+			.then(rs => {
+				var usuario = rs.usuario
+				if(!usuario){
+					window.location=`/`
+				}
+			}) 
+			.catch(error => {
+				console.log("Error: ", error)
+			})
+		}
+	</script>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+        <%- include('../partials/header'); %>
+		<!-- #header end -->
+
+        <!-- Page Title
+		============================================= -->
+		<section id="page-title" class="page-title-pattern">
+			<div class="container clearfix">
+				<h1 class="azul"><i class="icon-database"></i> Catalogo de Plantas</h2><br>
+			</div>
+		</section><!-- #page-title end -->
+
+		<section class="cv">
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/img_avatar.png" alt="Avatar" class="image">
+				<div class="middle">
+				  <div class="text">John Doe</div>
+				</div>
+			</div>
+		</section>
+		<br><br>
+		<!-- Footer
+		============================================= -->
+        <%- include('../partials/footer'); %>
+        <!-- #footer end -->
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+	<div id="gotoBottom" class="icon-angle-down"></div>
+
+
+	<!-- JavaScripts
+	============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+
+	<!-- Bootstrap Data Table Plugin -->
+	<script src="js/components/bs-datatable.js"></script>
+
+	<!-- Bootstrap Select Plugin -->
+	<script src="js/components/bs-select.js"></script>
+
+	<!-- Select Splitter Plugin -->
+	<script src="js/components/selectsplitter.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script>
+		$('.selectsplitter').selectsplitter();
+	</script>
+</body>
+</html>

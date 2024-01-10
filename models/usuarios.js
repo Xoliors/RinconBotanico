@@ -97,8 +97,8 @@ exports.conteo2 = async (req, res) => {
         const [pendingCount] = await conn.query("SELECT COUNT(id_actividad) as conteo FROM actividades WHERE id_usuario = ? AND estatus = 'sin fecha'", [id]);
 
         const dataFormatted = [
-            { label: 'Completadas', count: completedCount[0].conteo || 0 },
-            { label: 'Sin Completar', count: pendingCount[0].conteo || 0 }
+            { label: 'Vencidas', count: completedCount[0].conteo || 0 },
+            { label: 'Sin Fecha de Vencimiento', count: pendingCount[0].conteo || 0 }
             // Agrega más objetos para otros estados
         ];
 

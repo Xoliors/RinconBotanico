@@ -8,6 +8,7 @@ const usuarios = require('../models/usuarios')
 const manejo = require('../controllers/auth')
 const registro = require('../controllers/registro')
 const actu = require('../controllers/actualizar')
+const RA = require('../controllers/registroActividad')
 
 const session = require('express-session');
 
@@ -78,6 +79,7 @@ router.get('/Perfil',(req,res) => {
 router.post('/Actualizacion_informacion', actu.ActualizarU)
 router.get('/seleccion', actu.Usuarios)
 
+router.post('/registroA', RA.RegistrarA)
 ///////////     Catalogo de plantas     //////////
 router.get('/Plantas_segun_su_ciclo_de_vida',(req,res) => {
     res.render('pages/plantas-cv')
@@ -117,15 +119,5 @@ router.get('/tableUsuarios',manejo.Usuarios);
 router.post('/registrarU', manejo.RegistrarU);
 router.post('/actualizarU', manejo.ActualizarU);
 router.post('/eliminarU', manejo.EliminarU);
-
-router.get('/imagenes-cv', async (req, res) => {
-    try {
-        const primeras10 = await controlador.obtenerPrimeras10Imagenes(); // Función para obtener las primeras 10 imágenes
-        res.status(200).json(primeras10);
-    } catch (error) {
-        console.error("Error al obtener las primeras 10 imágenes:", error);
-        res.status(500).json({ error: "Error al obtener las primeras 10 imágenes" });
-    }
-});
 
 module.exports = router;

@@ -73,3 +73,74 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
 </div>
 <!--End Modal 2 -->
+
+<!-- Modal 3-->
+<!-- Modal -->
+<div class="modal fade" id="datosa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form style="max-width: 35rem;" method="post" id="form-registrar">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #206b34; color: white; border-bottom: solid 5px #c3ea21;">
+                    <h4 class="modal-title" id="myModalLabel" style="color: white; font-weight: bold;">Editar Usuario</h4>
+                    <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="nombreE">Nombre</label>
+                            <input type="text" class="form-control" id="nombreA" name="nombreA" placeholder="Ingrese el nombre">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="descripcionE">Descripción</label>
+                            <input type="text" class="form-control" id="descripcionA" name="descripcionA" placeholder="Ingrese la descripción">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="fechaCE">Fecha de Incio</label>
+                            <input type="date" class="form-control" id="fechaCA" name="fechaCA">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="fechaFE">Fecha de Finalización</label>
+                            <input type="date" class="form-control" id="fechaFA" name="fechaFA">
+                        </div>
+                        <!-- Puedes incluir campos ocultos o adicionales según sea necesario -->
+						<input type="hidden" value="sin completar" name="estatusA" id="estatusA">
+                        <input type="hidden" value="<%= usuarioSesion.idux %>" name="idux" id="idux">
+                    </div>
+                </div>
+                <div class="modal-footer form-group" style="border-top: transparent; background-color: #206b34; margin-bottom: 0%;  border-top:solid 5px #c3ea21;">
+                    <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Cerrar</button>
+                    <input type="submit" class="btn" style="background-color: #c3ea21; color: white;" value="Guardar" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Modal -->
+
+	<!--End Modal 3 -->
+
+	<!-- Modal 4-->
+<div class="modal fade" id="datosp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<form style="max-width: 35rem;" method="post" id="form-i">
+			<div class="modal-content">
+				<div class="modal-header"
+					style="background: #206b34; color: white; border-bottom:solid 5px #c3ea21;">
+					<h4 class="modal-title" id="myModalLabel"
+						style="color: white; font-weight: bold;">Editar Datos de Interes</h4>
+					<button type="button" class="btn-close btn-light" data-bs-dismiss="modal"
+						aria-hidden="true"></button>
+				</div>
+				<h1 style="text-align: center;">PROXIMAMENTE</h1>
+				<div class="modal-footer form-group"
+					style="border-top: transparent; background-color: #206b34; margin-bottom: 0%;  border-top:solid 5px #c3ea21;">
+					<button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(255, 0, 0, 0.514); color: white;">Cerrar</button>
+					<!-- <input type="submit" class="btn" style="background-color: #c3ea21; color: white;" value="Guardar" /> -->
+				</div>
+			</div>
+		</form>
+	</div>
+	<div>
+	</div>
+	</div>
+	<!--End Modal 4 -->

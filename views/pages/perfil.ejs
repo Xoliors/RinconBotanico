@@ -80,7 +80,7 @@
 							</div>
 						</div>
 						<div>
-							<a href="/Plantas_segun_su_utilidad"><button class="btn btn-primary">Ver</button></a>
+							<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosa" style="background-color: #206b34; "> Editar</button>
 						</div>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 							</div>
 						</div>
 						<div>
-							<a href="/Plantas_segun_su_estructura"><button class="btn btn-primary">Ver</button></a>
+							<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosp" style="background-color: #206b34; "> Editar</button>
 						</div>
 					</div>
 				</div>
@@ -169,6 +169,34 @@
                 });
             }
         });
+
+		$(document).ready(function () {
+        /* Registrar */
+        $("#form-registrar").submit(function (e) {
+            e.preventDefault();
+            data = {
+                'nombre': $("#nombreA").val(),
+                'descripcion': $("#descripcionA").val(),
+				'estatus': $("#estatusA").val(),
+                'fechaCA': $("#fechaCA").val(),
+                'fechaFA': $("#fechaFA").val(),
+                'idux': $("#idux").val()
+            }
+            let decide = confirm("¿Esta seguro de que desea Registrar?")
+            if (decide) {
+                $.post('/registroA', data, function (rs, res) {
+                    if (rs.status) {
+						console.log(data)
+                        alert("Datos Registrados Correctamente!");
+						
+                        location.reload();
+                    }
+                    else alert("Ocurrio un error al Registrar los datos!");
+                });
+            }
+        });
+        /* Registrar */
+    });
     </script>
 </body>
 </html>
